@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+    <meta charset = "UTF-8"/>
+    <meta name="viewport" content = 'width = device-width, initial-scale = 1.0'/>
+    <title> Sudoku Calculator</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="wrap" role = 'main'>
+        <div>
+            <h1>Sudoku Calculator</h1>
+            <p class="lead">Introduce number from 1 to 9 in the cells, let empty the cells you want to calculate. Use Resolve to calculate the solution</p>
+            <div class="board" aria-label="Tablero de Sudoku">
+                <div class="grid" id="grid" style="position: relative;">
+                    <!--aquí se va a generar el tablero de sudoku-->
+                </div>
+
+                <div class="controls">
+                    <button id="fillExample">Load Example</button>
+                    <button id="clear">Clear</button>
+                    <button id="validate">Validate</button>
+                    <button class="strong" id="solve">Solve</button>
+                    <!-- Solve vs Resolve "We need to solve this equation" "They resolved the issue with the client."-->
+                </div>
+
+                <div class="actions">
+                    <button id="stepSolve"> Solve step by step</button>
+                    <button id="generate">Easy Generate</button>
+                </div>
+
+                <div class="status" id="status" aria-live="polite"></div>
+
+                <footer>Hecho con HTML, CSS y JS</footer>
+            </div>
+        </div>
+        <div class="info">
+            <h2 style="margin-top: 0;"> Description</h2>
+            <p> This solver implements a backtracking algorithm to find the solution to a Sudoku puzzle. It tries numbers 1-9 in each empty cell and uses constraint propagation to eliminate impossible candidates.</p>
+            <h3>Shortcuts and Tips</h3>
+            <ul>
+                <li>Only number from 1 to 9 are alowed in the cells</li>
+                <li>Use the "Load Example" button to load a sample Sudoku puzzle</li>
+                <li>Click "Solve" to find a solution for the current puzzle</li>
+            </ul>
+        </div>
+    </div>
+    <script src="sudoku.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

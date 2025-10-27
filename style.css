@@ -1,0 +1,192 @@
+:root{
+    --bg: #0f1724;
+    --card: #0b1220;
+    --accent: #6ee7b7;
+    --muted: #94a3b8;
+    --cell-bg: #071025;
+}
+
+*{box-sizing: border-box;}
+body{
+    margin:0;  /* esto quita el margen que tiene por defecto la pagina margen izquierdo*/
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,#04132a 0%, #07182b 100%); /* El fondo de pantalla*/
+    color: #e6eef8;/*esto es el color del texto*/
+    display: flex; /* esto hace que el body sea un contenedor flex */
+    min-height: 100vh; /* esto hace que el body tenga una altura minima del 100% de la ventana*/
+    /*el vh significa "viewport height" y es una unidad de medida relativa a la altura de la ventana del navegador*/
+    align-items: center; /*esto alinea los elementos hijos en el centro verticalmente*/
+    justify-content: center; /*esto alinea los elementos hijos en el centro horizontalmente*/
+    padding: 24px; /*esto agrega un espacio interno de 24px alrededor del contenido del body*/
+    /*px significa "píxeles", que es una unidad de medida en CSS
+
+    Un 1 px en CSS equivale a 1 “pixel lógico”, que el navegador adapta según la densidad de la pantalla (DPI o PPI).
+    Por eso, 25 px de padding se verá igual de grande visualmente en cualquier pantalla, aunque internamente use más o menos píxeles físicos.
+    24px es un valor comúnmente usado para padding, ya que proporciona un buen equilibrio entre espacio y legibilidad.*/
+}
+
+.wrap{
+    width: 100%; /* Esto hace que el contenedor ocupe el 100% del ancho disponible */
+    max-width: 960px; /* Esto limita el ancho máximo del contenedor a 960 píxeles */
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); /* Esto aplica un fondo degradado al contenedor */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.7);
+    /*cada parametro del box shadow es <desplazamiento horizontal> <desplazamiento vertical> <difuminado> <color>*/
+    display: grid;
+    grid-template-columns: 420px 1fr; /* Esto define dos columnas en la cuadrícula, la primera de 420 píxeles y la segunda que ocupa el espacio restante */
+    /*fr significa "fracción" y se utiliza para asignar el espacio restante en la cuadrícula*/
+    gap:20px; /* Esto agrega un espacio de 20 píxeles entre las filas y columnas de la cuadrícula */
+}
+
+h1{
+    margin: 0 0 8px 0; /*esto elimina el margen superior e inferior del título y agrega un margen inferior de 8px
+    cada parametro del margin es <margen superior> <margen derecho> <margen inferior> <margen izquierdo>*/
+    font-size: 20px; /*esto define el tamaño de la fuente del título en 24 píxeles*/
+}
+
+p.lead{
+    margin: 0 0 16px 0;
+    color: var(--muted);
+}
+
+/*Estilizacion del tablero de Sudoku*/
+.board{
+    background: var(--card);
+    border-radius: 10px;
+    padding: 12px;
+    display: grid;
+    gap: 8px;
+    justify-content: center;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(9, 40px);
+    grid-auto-rows: 40px;
+    gap: 4px;
+    background: var(--cell-bg);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 0px rgba(255,255,255,0.2);
+}
+.cell{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01),  rgba(0,0,0,0.05));
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #e6eef8;
+    position: relative;
+}
+
+.cell input{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.cell.nv{border: 0;} /* esto quita el borde de las celdas que no se pueden modificar*/
+.grid > .cell:nth-child(3n){/* esto añade un borde derecho a las celdas en la tercera columna */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+.grid > .cell:nth-child(27n){}
+
+/* agrupar los bordes por fila/columna*/
+.grid .cell{
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.grid.cell{
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+}
+
+.grid::before{
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+
+
+
+.controls{
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+button{
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 12px;/* Esto agrega un padding de 8px en la parte superior e inferior y 12px en los lados
+    los parametros del padding son <margen superior> <margen derecho> <margen inferior> <margen izquierdo>*/
+    color: var(--accent);
+    border-radius: 8px;
+    cursor: pointer; /*esto cambia el cursor a una mano cuando se pasa sobre el botón*/
+    font-weight: 600; /*esto hace que el texto del botón sea un poco más grueso*/
+}
+
+button.strong{
+    background: linear-gradient(180deg, rgba(110,231,183,0.12),rgba(110,231,183,0.06));
+    border: none;
+}
+
+.actions{
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.info{
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01),rgba(0,0,0,0.03));
+    font-size: 14px;
+    color: var(--muted);
+}
+
+label{
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.status{
+    margin-top: 12px;
+    font-weight: 700;/* el font weight va de 100 a 900, siendo 400 el valor normal */
+    color: var(--accent);
+}
+footer{
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: right;
+}
+
+@media (max-width: 900px){ /* Esto aplica estilos para pantallas pequeñas   */
+    .wrap{
+        grid-template-columns: 1fr; /* Esto hace que el contenedor tenga una sola columna que ocupe todo el ancho disponible */
+        padding: 12px;
+    }
+    .grid{
+        grid-template-columns: repeat(9, 36px);
+        grid-auto-rows: 36px;
+    }
+    .cell input{font-size: 16px;}
+    button{padding: 8px;}
+}
+
+
+
+
